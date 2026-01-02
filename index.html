@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <!-- =========================== 基本設定 =========================== -->
+
+    <!-- 文字コード -->
+    <meta charset="UTF-8" />
+
+    <!-- タイトル（ブラウザタブ・検索結果用） -->
+    <title>ROSE HIP</title>
+
+    <!-- レスポンシブ対応（これ無いとスマホで崩れる） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- リセットCSS（ブラウザ差を消す） -->
+    <link rel="stylesheet" href="css/reset.css" />
+
+    <!-- メインCSS（全スタイル制御） -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- =========================== max-width指定の為の親要素 =========================== -->
+    <!--
+      site-wrapper
+      ・全体の最大幅を1200pxに制限
+      ・中央寄せ
+      ・header / banner / hero の基準にもなる
+    -->
+
+    <div class="site-wrapper">
+      <!-- =========================== Splash Screen =========================== -->
+      <!--
+        ・ページ読み込み直後に表示
+        ・白背景＋ロゴのみ
+        ・JSで is-hidden が付くとフェードアウト
+      -->
+
+      <!-- ページ読み込み直後に表示される白背景＋ロゴ -->
+      <div class="splash">
+        <!-- 落下アニメーションするロゴ -->
+        <img class="splash-logo" src="images/logo.svg" alt="ROSE HIP" />
+
+        <!-- ロゴ着地後のサブテキスト -->
+        <p class="splash-sub">HAIR & TOTAL BEAUTY</p>
+      </div>
+
+      <!-- =========================== header =========================== -->
+      <!--
+        ・常時固定表示
+        ・ロゴ（左）＋ハンバーガー（右）
+        ・SPメニューのトリガー
+      -->
+
+      <header>
+        <div class="header-inner">
+          <!-- ---------- ロゴ（常に左） ---------- -->
+          <!--
+            aタグ全体がトップページリンク
+          -->
+
+          <a href="/">
+            <img class="headerlogo" src="images/logo.svg" alt="ROSE HIP logo" />
+            <!-- 画面には出ないが読み上げ用 -->
+            <span class="sr-only">ROSE HIP</span>
+          </a>
+
+          <!-- ---------- ハンバーガーボタン ---------- -->
+          <!--
+            ・JSがクリックを監視
+            ・is-open で × に変形
+          -->
+
+          <button class="hamburger" aria-label="メニューを開く">
+            <!-- この3本がCSSで×（戻るボタン）に変形する -->
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- ---------- SPメニュー（全画面オーバーレイ） ---------- -->
+          <!--
+            ・初期状態は画面外（上）
+            ・is-open が付くと表示
+          -->
+
+          <nav class="sp-menu">
+            <ul class="headermenu">
+              <li><a href="#">メニュー</a></li>
+              <li><a href="#">スタッフ</a></li>
+              <li><a href="#">採用情報</a></li>
+              <li><a href="#">店舗情報</a></li>
+              <li><a href="#">ご予約</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <!-- =========================== main =========================== -->
+      <!--
+        hero
+        ・ファーストビュー専用
+        ・1画面固定（スクロール無し）
+        ・背景動画＋文字＋CTA（求人／予約）を重ねる
+      -->
+
+      <main class="hero">
+        <!-- ---------- Screen幅の背景動画エリア ---------- -->
+        <!--
+          hero-bg
+          ・1シーン分の背景動画ユニット
+          ・複数用意してJSでフェード切り替え
+          ・is-active が付いているものだけ表示
+        -->
+
+        <div class="hero-bg is-active">
+          <!--
+            video共通仕様
+            ・autoplay : 自動再生
+            ・muted : 無音（自動再生必須）
+            ・loop : ループ再生
+            ・playsinline : スマホで全画面化しない
+          -->
+
+          <!-- スマホ用動画 -->
+          <video
+            class="hero-video sp-only"
+            src="videos/background-sp.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+
+          <!-- PC用動画 -->
+          <video
+            class="hero-video pc-only"
+            src="videos/background-pc.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
+
+          <!-- ---------- テキストレイヤー（動画の上） ---------- -->
+          <!--
+            ・背景動画の上に重なる文字専用レイヤー
+            ・動画の再生時間とJSで同期
+          -->
+
+          <div class="hero-text-layer">
+            <!-- 各テキストは1シーン分 -->
+            <div class="hero-text text-1 text-space">落ち着いた空間と</div>
+            <div class="hero-text text-2 text-nail">洗練された技術で</div>
+            <div class="hero-text text-3 text-talk">新しい自分へ</div>
+            <div class="hero-text text-4 text-Team">スタッフ一同</div>
+            <div class="hero-text text-5 text-salon">
+              ROSE HIPで<br />お待ちしております。
+            </div>
+          </div>
+
+          <!-- ---------- バナー・アイコンエリア ---------- -->
+          <!--
+            ・画面下部に固定表示
+            ・CTA（求人／予約）＋下スクロール誘導
+          -->
+
+          <div class="banner-icon-area">
+            <!-- 最大幅1200px制御用 -->
+            <div class="banner-icon-inner">
+              <!-- ---------- 求人バナー ---------- -->
+
+              <a href="#" class="banner banner-job">
+                <img src="images/banner-job.png" alt="求人情報はこちら" />
+              </a>
+
+              <!-- ---------- フッターopenアイコン ---------- -->
+              <!--
+                ・下にコンテンツがあることを示す
+                ・CSSアニメーションで上下に動く
+              -->
+
+              <div class="hero-icon-area">
+                <div class="arrow">▲</div>
+                <div class="arrow">▲</div>
+                <span class="tap-text">open</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- =========================== footer =========================== -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <!-- ---------- footer closeアイコン ---------- -->
+          <div class="footer-close-area">
+            <span class="tap-text">close</span>
+            <div class="arrow">▼</div>
+            <div class="arrow">▼</div>
+          </div>
+          <!-- ---------- footer main ---------- -->
+          <div class="footer-main">
+            <!--  footerナビ  -->
+            <div class="footer-nav-area">
+              <div class="footer-menu-text">
+                <h3>~MENU~</h3>
+              </div>
+              <nav class="footer-nav">
+                <ul>
+                  <li><a href="#">メニュー</a></li>
+                  <li><a href="#">スタッフ</a></li>
+                  <li><a href="#">採用情報</a></li>
+                  <li><a href="#">店舗情報</a></li>
+                  <li><a href="#">ご予約</a></li>
+                </ul>
+              </nav>
+            </div>
+
+            <!--  SNSアイコン  -->
+            <div class="footer-sns-area">
+              <div class="footer-sns-text">
+                <h3>~SNS~</h3>
+              </div>
+              <div class="footer-sns">
+                <a
+                  href="https://www.facebook.com/rosehip.vc/"
+                  aria-label="Facebook"
+                >
+                  <img src="images/icon-facebook.svg" alt="" />
+                </a>
+                <a href="https://x.com/rosehip_vc" aria-label="X">
+                  <img src="images/icon-x.svg" alt="" />
+                </a>
+                <a
+                  href="https://www.instagram.com/rose_hip_total_beauty/"
+                  aria-label="Instagram"
+                >
+                  <img src="images/icon-instagram.svg" alt="" />
+                </a>
+                <a href="https://lin.ee/nPXN010" aria-label="LINE">
+                  <img src="images/icon-line.svg" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ---------- footer logo&info ---------- -->
+          <div class="footer-logo-area">
+            <!-- footer logo -->
+            <div class="footer-brand">
+              <a href="/">
+                <img
+                  class="footerlogo"
+                  src="images/logo.svg"
+                  alt="ROSE HIP logo"
+                />
+                <span class="sr-only">ROSE HIP</span>
+              </a>
+
+              <!-- address・tel -->
+              <address class="footer-info">
+                <p>〒819-0022</p>
+                <p>福岡県福岡市西区福重5丁目4-10</p>
+                <p>
+                  TEL：
+                  <a href="tel:0928952580">092-895-2580(ご予約承ります。)</a>
+                </p>
+              </address>
+            </div>
+          </div>
+        </div>
+        <!-- ---------- コピーライト ---------- -->
+        <div class="footer-copy">
+          <small>© ROSE HIP All Rights Reserved.</small>
+        </div>
+      </footer>
+      <!-- =========================== JavaScript =========================== -->
+      <!--
+        ・DOM生成後に読み込む
+        ・Splash / Hamburger / Video / Text 制御
+      -->
+      <script src="js/main.js"></script>
+    </div>
+  </body>
+</html>
